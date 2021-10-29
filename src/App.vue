@@ -69,7 +69,8 @@
 </template>
 <script>
 import router from "@/router";
-// import API from "@/api/api";
+
+
 export default {
   // name: "LeftDrawer",
   data () {
@@ -82,26 +83,7 @@ export default {
       right: null,
     }
   },
-  methods: {
-    async onLoginClick() {
-      try {
-        await API.login(this.username, this.password)
-        router.push('/').catch(()=>{})
-      } catch (e) {
-        console.error(e)
-      }
-      // alert(store.state.authName)
-    },
-    async onLogoutClick() {
-      try {
-        await API.logout()
-        router.push('/login').catch(()=>{})
-      } catch (e) {
-        console.error(e)
-      }
-      // alert(store.state.authName)
-    },
-  },
+
 }
 </script>
 <style lang="scss">

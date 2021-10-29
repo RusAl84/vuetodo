@@ -10,7 +10,7 @@
         label="Regular"
     ></v-text-field>
     <v-btn
-        elevation="2"
+        elevation="2" @click="onClick"
     >Добавить</v-btn>.
     {{name}}
     {{priority}}
@@ -19,7 +19,8 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import  API from "@/api/api.js"
+import router from "@/router";
 
 export default {
   name: 'Home',
@@ -30,9 +31,29 @@ export default {
       //   { title: 'Photos', icon: 'mdi-image' },
       //   { title: 'About', icon: 'mdi-help-box' },
       // ],
-      name: "",
-      priority: "",
+      name: 'test',
+      priority: '0',
     }
+  },
+  methods: {
+    async onClick() {
+      try {
+        await API.sendToDo(this.name, this.priority)
+        router.push('/').catch(()=>{})
+      } catch (e) {
+        console.error(e)
+      }
+      // alert(store.state.authName)
+    },
+    async onLogoutClick() {
+      try {
+        await API.logout()
+        router.push('/login').catch(()=>{})
+      } catch (e) {
+        console.error(e)
+      }
+      // alert(store.state.authName)
+    },
   },
   components: {
     // HelloWorld
